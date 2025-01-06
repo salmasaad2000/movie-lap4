@@ -1,15 +1,31 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 import MovieCard from "../components/MovieCard";
 import axiosInstance from "../api/config";
 
 export default function Movies() {
   const [movies, setMovies] = useState();
-  const [searchMovie, setSearchMovie] = useState(""); 
+  const [searchMovie, setSearchMovie] = useState("");
+
+  const language = useSelector((state) => state.language.currentLanguage);
+
+  const fetchMovies = async (query = "") => {
+    try {
+      const endpoint = query
+        ? `/search/movie?query=${query}&language=${language}`
+        : `/movie/popular?language=${language}`;
+      
+      const response = await axiosInstance.get(endpoint); 
+      setMovies(response.data.results);
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+    }
+  };
 
   useEffect(() => {
-    getMovies();
-  }, []);
+    fetchMovies(); 
+  }, [language]);
  
   const getMovies = (original_title = "") => {
     const data = original_title

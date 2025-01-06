@@ -1,4 +1,3 @@
-// src/redux/favoriteMoviesSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const favoriteMoviesSlice = createSlice({

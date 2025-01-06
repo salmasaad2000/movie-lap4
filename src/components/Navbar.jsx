@@ -1,6 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import './../App.css';
 
 export default function Navbar() {
@@ -22,6 +22,8 @@ export default function Navbar() {
                         <div className="navbar-nav">
                             <Link className="nav-link" to="/">Movies</Link>
                             <Link className="nav-link " to="/watch-list">Watch List</Link>
+                            <Link className="nav-link " to="/Register">Register</Link>
+                            <Link className="nav-link " to="/Settings">Setting</Link>
                         </div>
                     </div>
                 </div>
@@ -29,3 +31,4 @@ export default function Navbar() {
         </>
     )
 }
+
